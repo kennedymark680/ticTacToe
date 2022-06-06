@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 
 const Game = () => {
+  const [hasWinner, toggleHasWinner] = useState(false)
   const [xAndO, setXAndO] = useState('X')
   const [board, setBoard] = useState([
     null,
@@ -16,10 +17,12 @@ const Game = () => {
   ])
 
   const squareClick = (index) => {
-    let newBoard = board
-    newBoard[index] = xAndO
-    setBoard(newBoard)
-    xAndO === 'X' ? setXAndO('O') : setXAndO('X')
+    if (!hasWinner) {
+      let newBoard = board
+      newBoard[index] = xAndO
+      setBoard(newBoard)
+      xAndO === 'X' ? setXAndO('O') : setXAndO('X')
+    }
   }
 
   const checkHaveValue = (b) => {
@@ -34,10 +37,13 @@ const Game = () => {
   }
 
   const checkEqual = (a, b, c) => {
-    if (a === b && a === c) console.log(`${a} has Won!`)
+    if (a === b && a === c) {
+      console.log(`${a} has Won!`)
+      toggleHasWinner(true)
+    }
   }
 
-  checkHaveValue(board)
+  if (!hasWinner) checkHaveValue(board)
 
   return (
     <div className="board">
