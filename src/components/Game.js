@@ -14,10 +14,18 @@ const Game = () => {
     null
   ])
 
+  const squareClick = (index) => {
+    let newBoard = board
+    newBoard[index] = 'X'
+    setBoard(newBoard)
+  }
+
   return (
     <div className="board">
-      {board.map((s) => (
-        <div className="square"></div>
+      {board.map((s, index) => (
+        <div className="square" key={index} onClick={() => squareClick(index)}>
+          {board[index]}
+        </div>
       ))}
     </div>
   )
