@@ -1,1 +1,12 @@
 
+.board {
+  display: grid;
+  grid-template-columns: 10em 10em 10em;
+  grid-template-rows: 10em 10em 10em;
+  row-gap: 1em;
+  column-gap: 1em;
+}
+
+.square {
+  background-color: aqua;
+}
